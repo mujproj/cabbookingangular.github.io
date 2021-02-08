@@ -1,0 +1,20 @@
+<div *ngIf="adminUser !== null">
+    <div class="sidebar">
+        <span (click)="toggleSideBar()" class="crossBtn">&times;</span>
+        <a href="" class="item">Hello {{admin.username}}</a>
+        <a class="item" routerLink="/adminDashboard"><i class="fa fa-home" aria-hidden="true" routerLink="/adminDashboard"></i>  User Dashboard</a>
+        <a class="item" routerLink = "/updateAdmin"><i class="fas fa-edit"></i>  Update Profile</a>
+        <a class="item" routerLink = "/bestDrivers"><i class="fas fa-id-badge"></i>  View Best Driver</a>
+        <a class="item" routerLink = "/viewAdminProfile"><i class="fas fa-id-badge" ></i>  View Profile</a>
+        <a href="" routerLink = "/updateAdminPassword" class="item"><i class="fas fa-cog"></i>  Change Password</a>
+        <a href="" class="item"><i class="far fa-question-circle"></i>  Need Help?</a>
+        <a href="" class="item" routerLink="/viewAllCustomers"><i class="fas fa-id-badge"></i>View All Customers</a>
+        <div class="divider"></div>
+    </div>
+    
+    <div class="content">
+        <i (click)="toggleSideBar()" class="fas fa-bars m-3"></i>
+        
+        <div ></div>
+    </div>
+</div>

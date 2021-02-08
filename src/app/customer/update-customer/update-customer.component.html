@@ -1,0 +1,111 @@
+<div *ngIf="(adminUser == undefined && customerUser !== null && driverUser == undefined); else elseBlock1">
+    <div class="contentc">
+        <app-sidenav-customer></app-sidenav-customer>
+        <div class="container">
+            <form [formGroup]="updateCustomerForm" class="form" (ngSubmit)="onSubmit(updateCustomerForm)" >
+    
+                <div class="formcontent">
+                    <div class="container mb-4 text-center">
+                        <h1>Update Profile</h1>
+                        <small>You will get logged out after updating your profile. Login again to see updated profile</small>
+                    </div>
+    
+                    <!-- 
+                        Errors statement
+                     -->
+                     <!-- error if we try to insert duplicate username -->
+                    <div *ngIf="message !== undefined" class="alert alert-danger form-outline mb-4 container col-md-4">
+                        {{message}}
+                    </div>
+    
+                    <div *ngIf="updateCustomerForm.controls['username'].invalid && (updateCustomerForm.controls['username'].dirty || updateCustomerForm.controls['username'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                        <div *ngIf="updateCustomerForm.controls['username'].errors?.required" class="container">
+                            UserName is required.
+                        </div>
+                        <div *ngIf="updateCustomerForm.controls['username'].errors?.minlength" class="container">
+                            Username should be 3 or more characters
+                        </div>
+                    </div>
+    
+                    <!-- For Email -->
+                    <div *ngIf="updateCustomerForm.controls['email'].invalid && (updateCustomerForm.controls['email'].dirty || updateCustomerForm.controls['email'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                        <div *ngIf="updateCustomerForm.controls['email'].errors?.required" class="container">
+                            Email Cannot be left blank
+                        </div>
+
+                        <div *ngIf="updateCustomerForm.controls['email'].errors?.pattern" class="container">
+                            Email should be like xyz@abc.com
+                        </div>
+                    </div>
+
+                    <!-- for mobile number -->
+                    <div *ngIf="updateCustomerForm.controls['mobileNumber'].invalid && (updateCustomerForm.controls['mobileNumber'].dirty || updateCustomerForm.controls['mobileNumber'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                        <div *ngIf="updateCustomerForm.controls['mobileNumber'].errors?.required" class="container">
+                            Mobile Number should not be left blank
+                        </div>
+
+                        <div *ngIf="updateCustomerForm.controls['mobileNumber'].errors?.minlength" class="container">
+                            Mobile Number should be atleast 10 digits
+                        </div>
+
+                        <div *ngIf="updateCustomerForm.controls['mobileNumber'].errors?.maxlength" class="container">
+                            Mobile Number should be atmost 12 digits
+                        </div>
+
+                        <div class="container" *ngIf="updateCustomerForm.controls['mobileNumber'].errors?.pattern">
+                            You can only enter numeric values in Mobile Number field
+                        </div>
+                    </div>
+
+    
+                    <!-- 
+                        errors statement over
+                     -->
+    
+                    <div class="form-outline mb-4 container col-md-5">
+                        <label for="username" class="form-label">
+                        Username
+                        </label>
+                        <input type="text" formControlName="username" id="username" class="form-control" placeholder="Enter your username" required name="username">
+                    </div>
+    
+                    <div class="form-outline mb-4 container col-md-5">
+                        <label id="pass" class="form-label">
+                            Mobile Number
+                        </label>
+                        <input type="text" name="" id="pass" formControlName="mobileNumber" class="form-control" placeholder="Enter Mobile Number">
+                    </div>
+
+                    <div class="form-outline mb-4 container col-md-5">
+                        <label id="email" class="form-label">
+                            Email
+                        </label>
+                        <input type="email" name="" id="email" formControlName="email" class="form-control" placeholder="Enter Email">
+                    </div>
+    
+                    <div class="form-outline mb-4 container text-center">
+                        <input type="submit" value="Update" class="btn btn-success" style="background-color: darkred; color: yellow; opacity: 0.99;" [disabled]="!updateCustomerForm.valid">
+                    </div>
+    
+                    <div class="form-outline mb-4 container text-center">
+                        <a style="color: yellow;"> Your Updated Profile Will be visible When You Logout and Login again</a>
+                    </div>
+    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    
+<ng-template #elseBlock1>
+    <div class="backgroundimage">
+        <div class="container">
+            <div class="card text-center">
+                <div class="card-body">
+                <h5 class="card-title">Looks Like There Is Some Error</h5>
+                <p class="card-text">You are not authorised to use this page</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

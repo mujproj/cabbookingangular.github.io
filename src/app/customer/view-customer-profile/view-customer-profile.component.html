@@ -1,0 +1,23 @@
+<div *ngIf="customerUser !== null && driverUser == null && adminUser == null">
+<app-sidenav-customer></app-sidenav-customer>
+<div class="container">
+<table class="table">
+      <tr>
+        <th scope="col">Customer Id</th>
+        <td>{{cust.customerId}}</td>
+      </tr>
+      <tr>
+          <th>Customer Username</th>
+          <td>{{cust.username}}</td>
+      </tr>
+      <tr>
+          <th>Customer Email</th>
+          <td>{{cust.email}}</td>
+      </tr>
+      <tr>
+          <th>Customer Mobile Number</th>
+          <td>{{cust.mobileNumber}}</td>
+      </tr>
+</table>
+</div>
+</div>

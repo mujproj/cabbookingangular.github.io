@@ -1,0 +1,167 @@
+<div *ngIf="adminUser == undefined && customerUser == undefined && driverUser == undefined; else elseBlock1">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink=""><b> <img src="../assets/taxi (1).png"></b> Pick Me Cab</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  
+        </ul>
+        <ul class="navbar-nav mb-2 mb-lg-0" >
+          <!-- Example single danger button -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#aboutus">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contactus">Contact Us</a>
+          </li>
+          &nbsp; &nbsp;
+          
+          <!-- checking if user is not logged in, he or she should see login and register options -->
+          <!-- <span *ngIf="AdminDataUsername === undefined || CustomerDataUsername === undefined || DriverDataUsername === undefined"> -->
+          <li class="nav-item">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary">Login</button>
+              <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-lg-end">
+                <li><a class="dropdown-item" href="#" routerLink = "/loginAdmin">Login As Admin</a></li>
+                <li><a class="dropdown-item" href="#" routerLink = "/loginCustomer">Login As Customer</a></li>
+                <li><a class="dropdown-item" href="#" routerLink = "/loginDriver">Login As Driver</a></li>
+              </ul>
+            </div>
+          </li>
+          &nbsp; &nbsp;
+          <li class="nav-item">
+            <a href="" class="nav-link" routerLink="/registerCustomer">Register</a>
+          </li>
+  
+          <!-- checking if user is logged in , he or she should see Logout option -->
+          <!-- <span *ngIf="AdminDataUsername !== undefined || CustomerDataUsername !== undefined || DriverDataUsername !== undefined"> -->
+            <!-- <li class="nav-item">
+              <a href="" class="nav-link">Logout</a>
+            </li> -->
+          <!-- </span> -->
+      
+        </ul>
+  
+        <!--  -->
+  
+        <!--  -->
+      </div>
+    </div>
+  </nav>
+</div>
+
+<ng-template #elseBlock1>
+
+    <div *ngIf="adminUser !== undefined && driverUser == undefined && customerUser == undefined">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" routerLink=""><b> <img src="../assets/taxi (1).png"></b> Pick Me Cab</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0" >
+                  <!-- Example single danger button -->
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#aboutus">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#contactus">Contact Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link" (click) = 'adminLogout()'>Logout</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link" routerLink="/adminDashboard">DashBoard</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </div>
+
+    <!--  -->
+    <div *ngIf="customerUser !== undefined && driverUser == undefined && adminUser == undefined">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" routerLink=""><b> <img src="../assets/taxi (1).png"></b> Pick Me Cab</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0" >
+                  <!-- Example single danger button -->
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#aboutus">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#contactus">Contact Us</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link" (click)='customerLogout()'>Logout</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="" class="nav-link" routerLink="/customerDashboard">DashBoard</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </div>
+
+    <!--  -->
+    <div *ngIf="driverUser !== undefined && adminUser == undefined && customerUser == undefined">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" routerLink=""><b> <img src="../assets/taxi (1).png"></b> Pick Me Cab</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0" >
+                  <!-- Example single danger button -->
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" routerLink="">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#aboutus">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#contactus">Contact Us</a>
+                  </li>
+                  <li class="nav-item">
+                      
+                    <a href="" class="nav-link" (click)='driverLogout()'>Driver Logout</a>
+                  </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </div>
+
+</ng-template>
+  <router-outlet></router-outlet>

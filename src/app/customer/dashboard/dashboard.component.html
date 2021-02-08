@@ -1,0 +1,88 @@
+<div *ngIf="customerUser !== null; else elseBlock1">
+    <!-- <div class="backgroundimage"></div> -->
+    <div class="backgroundcontent1">
+        <div class="container">
+            <div class="card text-center col d-flex justify-content-center mx-auto">
+                <div class="card-body">
+                <p class="card-text">Welcome {{cust.username}} To Your Very Own Pick Me Cab Portal
+                    <br>
+                    Scroll down For Exciting Things
+                </p>
+                </div>
+                
+            </div>
+            
+        </div>
+        <app-sidenav-customer></app-sidenav-customer>
+    </div>
+    <div class="backgroundcontent2">
+        <div class="container">
+            <div class="c text-center col d-flex justify-content-center mx-auto">
+                <div class="card-body">
+                <p class="card-text">Now We are here with sidebar.  You can view/update your profile.
+                    <br>
+                    You can also request for a trip or see best drivers through sidebar
+                    <br>
+                    Go Up and click the Hamburger to see more options
+                </p>
+                </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <div class="backgroundcontent3">
+        <div class="container">
+            <div class="c text-center col d-flex justify-content-center mx-auto">
+                <div class="card-body" style="background-color: white; color: purple; opacity: 0.7;">
+                <p class="card-text">You can Book Your Cab Any Time.
+                    <br>
+                    Give Us A Call At 9660XXXXX and be ready with your ID to book trip:(You can see your id on your profile)
+                    <br>
+                    Use our app for better experience. 
+                    <br>
+                    We ensure you to give you best experience during the travel.   <br> Book Now
+                </p>
+                </div>
+                
+            </div>
+            
+        </div>
+    </div>
+    <!-- </div> -->
+    <footer class="bg-dark text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="color: white;">
+          © 2020 Copyright:
+          JayGupta's Creation
+        </div>
+        <!-- Copyright -->
+      </footer>
+</div>
+
+<ng-template #elseBlock1>
+    <div *ngIf="customerUser == null || driverUser !== null || adminUser !== null">
+    <div class="backgroundimage">
+        <div class="container" style="justify-content: center;
+        align-content: center;
+        margin: auto;
+        display: block;
+        padding: 120px;
+        font-size: x-large;
+        margin: 0 auto; /* Added */
+            float: none; /* Added */
+            margin-bottom: 10px;">
+            <div class="card text-center" style="color: white;
+            opacity: 0.8;
+            background-color: black;">
+                <div class="card-body" style="text-align: center;">
+                <h5 class="card-title">Looks Like There Is Some Error</h5>
+                <p class="card-text">You are not authorised to use this page. Only authorised customers can view this page</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</ng-template>

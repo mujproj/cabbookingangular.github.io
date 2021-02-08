@@ -1,0 +1,82 @@
+.backgroundimage{
+    background-image: url('https://www.taxiinvaranasi.com/images/slider/slider-bg2.jpg');
+    background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+
+  background-position: center center;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+  
+  /* Set a background color that will be displayed
+     while the background image is loading */
+  background-color: #464646;
+  width: 100%;
+  text-align: center;
+  min-height: 100vh;
+}
+.backgroundimage .container{
+    /* display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0;
+    opacity: 0.8;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    font-size: x-large;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    color: white; */
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+    display: block;
+    padding: 120px;
+    font-size: x-large;
+    margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+
+.card{
+    color: white;
+    opacity: 0.8;
+    background-color: black;
+}
+.col img{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border-radius: 15%;
+}
+.col .card-body{
+    text-align: center;
+}
+
+ .contactus .mb-3{
+    
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    display: block;
+    align-content: center;
+}
+
+.contactus .container{
+    opacity: 0.9;
+}
+
+.cus{
+    background-color:skyblue;
+}
+
+.formcontent{
+    background-color: slateblue;
+}

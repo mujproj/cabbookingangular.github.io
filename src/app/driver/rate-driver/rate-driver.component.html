@@ -1,0 +1,79 @@
+<div *ngIf="customerUser !== null && adminUser == null && driverUser == null; else elseBlock1">
+    <div class="contentt">
+        <app-sidenav-customer>
+        </app-sidenav-customer>
+        <div class="container">
+            <form action="" class="form" [formGroup]="driverRatingForm" (ngSubmit)="onSubmit(driverRatingForm)">
+                <div class="formcontent">
+                    <div class="container mb-4 text-center">
+                        <h1>Rate Driver</h1>
+                    </div>
+                    <!-- 
+                        Errors statement
+                     -->
+                    <div *ngIf="message !== undefined" class="alert alert-danger form-outline mb-4 container col-md-4">
+                        {{message}}
+                    </div>
+
+                    <div *ngIf="driverRatingForm.controls['driverId'].invalid && (driverRatingForm.controls['driverId'].dirty || driverRatingForm.controls['driverId'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                        <div *ngIf="driverRatingForm.controls['driverId'].errors?.required" class="container">
+                            Driver Id Is Mandatory
+                        </div>
+                        <div *ngIf="driverRatingForm.controls['driverId'].errors?.pattern" class="container">
+                            Driver Id Should Only Contain numeric fields
+                        </div>
+                    </div>
+
+                    <div *ngIf="driverRatingForm.controls['rating'].invalid && (driverRatingForm.controls['rating'].dirty || driverRatingForm.controls['rating'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                        <div class="container" *ngIf="driverRatingForm.controls['rating'].errors?.required">
+                            Driver Rating cannot be left blank
+                        </div>
+                        <div class="container" *ngIf="driverRatingForm.controls['rating'].errors?.pattern ">
+                            Driver Rating should be numeric value
+                        </div>
+                        <div class="container" *ngIf="driverRatingForm.controls['rating'].errors?.max">
+                            Driver Rating Should be max 5
+                        </div>
+                    </div>
+
+                    <!-- Errors statement over -->
+
+                    <div class="form-outline mb-4 container col-md-5">
+                        <label for="did" class="form-label">
+                            Driver Id
+                        </label>
+                        <input type="text" formControlName="driverId" id="did" class="form-control" placeholder="Enter Driver Id" required name="did">
+                    </div>
+
+                    <div class="form-outline mb-4 container col-md-5">
+                        <label for="rating" class="form-label">
+                            Driver Rating
+                        </label>
+                        <input type="text" name="rating" id="rating" class="form-control" placeholder="Enter driver Rating" formControlName="rating" required>
+                    </div>
+
+                    <div class="form-outline mb-4 container text-center">
+                        <input type="submit" value="Rate" class="btn btn-success" style="background-color: darkred; color: yellow; opacity: 0.99;" [disabled]="!driverRatingForm.valid">
+                    </div>
+
+                    <div class="form-outline mb-4 container text-center">
+                        Rating A Driver Would Help Us Provide You Safe, Happy and Convinient Rides
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<ng-template #elseBlock1>
+        <div class="backgroundimage">
+            <div class="container">
+                <div class="card text-center">
+                    <div class="card-body">
+                    <h5 class="card-title">Looks Like There Is Some Error</h5>
+                    <p class="card-text">You Are Not Authroised To Use This Page</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</ng-template>

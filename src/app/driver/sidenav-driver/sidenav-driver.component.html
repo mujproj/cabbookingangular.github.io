@@ -1,0 +1,20 @@
+<div *ngIf="driverUser !== null">
+    <div class="sidebar">
+        <span (click)="toggleSideBar()" class="crossBtn">&times;</span>
+        <a href="" class="item">Hello {{driver.username}}</a>
+        <a class="item"><i class="fa fa-home" aria-hidden="true" routerLink="/driverDashboard"></i>  User Dashboard</a>
+        <a class="item" routerLink = "/updateDriver"><i class="fas fa-edit"></i>  Update Profile</a>
+        <a class="item" routerLink = "/bestDrivers"><i class="fas fa-id-badge"></i>  View Best Driver</a>
+        <a class="item" routerLink = "/viewDriverProfile"><i class="fas fa-id-badge" ></i>  View Profile</a>
+        <a href="" routerLink = "/updateDriverPassword" class="item"><i class="fas fa-cog"></i>  Change Password</a>
+        <a href="" class="item"><i class="far fa-question-circle"></i>  Need Help?</a>
+        <a href="" class="item" routerLink="/rateDriver"><i class="fas fa-star"></i>  Rate Driver</a>
+        <div class="divider"></div>
+    </div>
+    
+    <div class="content">
+        <i (click)="toggleSideBar()" class="fas fa-bars m-3"></i>
+        
+        <div ></div>
+    </div>
+</div>

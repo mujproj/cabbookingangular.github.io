@@ -1,0 +1,51 @@
+<div *ngIf="adminUser !== null; else elseBlock1 ">
+    <div class="backgroundimagecontent">
+        <div *ngIf="adminUser !== null">
+            <app-sidenav-admin></app-sidenav-admin>
+        </div>
+        <div class="content container">
+            <div class="written-content">
+                <div *ngIf="customers !== undefined">
+                    <h1 class="text-center" style="color: white; background-color: black; opacity: 0.8; margin-left: 280px; margin-right: 280px;">All Customers</h1>
+                    <table class="table  table-dark table-striped table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col">Customer Id</th>
+                                <th scope="col">Customer Username</th>
+                                <th scope="col">Customer Email</th>
+                                <th scope="col">Customer Mobile Number</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor = "let customer of customers">
+                                <td>{{customer.customerId}}</td>
+                                <td>{{customer.username}}</td>
+                                <td>{{customer.email}}</td>
+                                <td>{{customer.mobileNumber}}</td>
+                                <td><button type="button" (click)="deleteCustomer(customer.customerId)"  style="background-color: red; color: white;"><span class="fa fa-trash" aria-hidden="true"></span></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="customers === undefined" class="text-center">
+                    {{message}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #elseBlock1>
+    <div class="backgroundimage">
+        <div class="container">
+            <div class="card text-center">
+                <div class="card-body">
+                <h5 class="card-title">Looks Like There Is Some Error</h5>
+                <p class="card-text">You are not authorised to use this page</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+

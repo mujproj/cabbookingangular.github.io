@@ -1,0 +1,80 @@
+<div *ngIf="(adminUser == undefined && customerUser == undefined && driverUser == undefined); else elseBlock1">
+    <div class="content">
+        <div class="container">
+            <form [formGroup]="customerLoginForm" class="form" (ngSubmit)="onSubmit(customerLoginForm)" >
+    
+                <div class="formcontent">
+                    <div class="container mb-4 text-center">
+                        <h1>Login Customer</h1>
+                    </div>
+    
+                    <!-- 
+                        Errors statement
+                     -->
+                     <!-- error if we try to insert duplicate username -->
+                    <div *ngIf="message !== undefined" class="alert alert-danger form-outline mb-4 container col-md-4">
+                        {{message}}
+                    </div>
+    
+                    <div *ngIf="customerLoginForm.controls['username'].invalid && (customerLoginForm.controls['username'].dirty || customerLoginForm.controls['username'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                        <div *ngIf="customerLoginForm.controls['username'].errors?.required" class="container">
+                            UserName is required.
+                        </div>
+                        <div *ngIf="customerLoginForm.controls['username'].errors?.minlength" class="container">
+                            Username should be 3 or more characters
+                        </div>
+                    </div>
+    
+                    <!-- for password -->
+                    <div *ngIf="customerLoginForm.controls['password'].invalid && (customerLoginForm.controls['password'].dirty || customerLoginForm.controls['password'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                        <div *ngIf="customerLoginForm.controls['password'].errors?.required" class="container">
+                            Password cannot be left blank
+                        </div>
+                    </div>
+    
+                    <!-- 
+                        errors statement over
+                     -->
+    
+                    <div class="form-outline mb-4 container col-md-5">
+                        <label for="username" class="form-label">
+                        Username
+                        </label>
+                        <input type="text" formControlName="username" id="username" class="form-control" placeholder="Enter your username" required name="username">
+                    </div>
+    
+                    <div class="form-outline mb-4 container col-md-5">
+                        <label id="pass" class="form-label">
+                            Password
+                        </label>
+                        <input type="password" name="" id="pass" formControlName="password" class="form-control" placeholder="Enter password">
+                    </div>
+    
+                    <div class="form-outline mb-4 container text-center">
+                        <input type="submit" value="Login" class="btn btn-success" style="background-color: darkred; color: yellow; opacity: 0.99;" [disabled]="!customerLoginForm.valid">
+                    </div>
+    
+                    <div class="form-outline mb-4 container text-center">
+                        <a routerLink="/registerCustomer" style="color: yellow;"> Dont have an account? Register Yourself</a>
+                    </div>
+    
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    
+    <ng-template #elseBlock1>
+        <div *ngIf="(adminUser !== undefined || customerUser !== undefined || driverUser !== undefined)">
+            <div class="backgroundimage">
+                <div class="container">
+                    <div class="card text-center">
+                        <div class="card-body">
+                        <h5 class="card-title">Looks Like There Is Some Error</h5>
+                        <p class="card-text">You cannot login again if once you are logged in as a user</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>

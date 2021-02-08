@@ -1,0 +1,157 @@
+<div *ngIf="(adminUser == undefined && customerUser == undefined && driverUser == undefined); else elseBlock1">
+<div class="content">
+    <div class="container">
+        <form [formGroup]="adminAddForm" class="form" (ngSubmit)="onSubmit(adminAddForm)" >
+
+            <div class="formcontent">
+                <div class="container mb-4 text-center">
+                    <h1>Register Admin</h1>
+                </div>
+                <!-- 
+                    Errors statement
+                 -->
+                 <!-- error if we try to insert duplicate username -->
+                 <div *ngIf="message !== undefined" class="alert alert-danger form-outline mb-4 container col-md-4">
+                     {{message}}
+                 </div>
+
+                 <!-- error for username -->
+                 <div *ngIf="adminAddForm.controls['username'].invalid && (adminAddForm.controls['username'].dirty || adminAddForm.controls['username'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                    <div *ngIf="adminAddForm.controls['username'].errors?.required" class="container">
+                        UserName is required.
+                    </div>
+                    <div *ngIf="adminAddForm.controls['username'].errors?.minlength" class="container">
+                        Username should be 3 or more characters
+                    </div>
+                </div>
+
+                <!-- For Email -->
+                <div *ngIf="adminAddForm.controls['email'].invalid && (adminAddForm.controls['email'].dirty || adminAddForm.controls['email'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                    <div *ngIf="adminAddForm.controls['email'].errors?.required" class="container">
+                        Email Cannot be left blank
+                    </div>
+
+                    <div *ngIf="adminAddForm.controls['email'].errors?.pattern" class="container">
+                        Email should be like xyz@abc.com
+                    </div>
+                </div>
+
+                <!-- for mobile number -->
+                <div *ngIf="adminAddForm.controls['mobileNumber'].invalid && (adminAddForm.controls['mobileNumber'].dirty || adminAddForm.controls['mobileNumber'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                    <div *ngIf="adminAddForm.controls['mobileNumber'].errors?.required" class="container">
+                        Mobile Number should not be left blank
+                    </div>
+
+                    <div *ngIf="adminAddForm.controls['mobileNumber'].errors?.minlength" class="container">
+                        Mobile Number should be atleast 10 digits
+                    </div>
+
+                    <div *ngIf="adminAddForm.controls['mobileNumber'].errors?.maxlength" class="container">
+                        Mobile Number should be atmost 12 digits
+                    </div>
+
+                    <div class="container" *ngIf="adminAddForm.controls['mobileNumber'].errors?.pattern">
+                        You can only enter numeric values in Mobile Number field
+                    </div>
+                </div>
+
+                <!-- for password -->
+                <div *ngIf="adminAddForm.controls['password'].invalid && (adminAddForm.controls['password'].dirty || adminAddForm.controls['password'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                    <div *ngIf="adminAddForm.controls['password'].errors?.required" class="container">
+                        Password cannot be left blank
+                    </div>
+
+                    <div class="control" *ngIf="adminAddForm.controls['password'].errors?.pattern">
+                        For Password
+                        <br>
+                        1) A digit must occur at least once
+                        <br>
+                        2) A lower case letter must occur at least once
+                        <br>
+                        3) An upper case letter must occur at least once
+                        <br>
+                        4) A special character(except #) must occur at least once
+                        <br>
+                        5) No whitespace allowed in the entire string
+                        <br>
+                        6) Anything, at least eight places though end-of-string
+                    </div>
+                </div>
+
+                <!-- for confirm password -->
+                <div *ngIf="adminAddForm.controls['cpassword'].invalid && (adminAddForm.controls['cpassword'].dirty || adminAddForm.controls['cpassword'].touched)" class="alert alert-danger form-outline mb-4 container col-md-4">
+                    <div *ngIf="adminAddForm.controls['cpassword'].errors?.required" class="container">
+                        Confirm Password cannot be left blank
+                    </div>
+
+                    <div class="container" *ngIf="adminAddForm.controls['cpassword'].value !== adminAddForm.controls['password']">
+                        this is error
+                    </div>
+                </div>
+                <!-- 
+                    errors statement over
+                 -->
+
+                <div class="form-outline mb-4 container col-md-5">
+                    <label for="username" class="form-label">
+                    Username
+                    </label>
+                    <input type="text" formControlName="username" id="username" class="form-control" placeholder="Enter your username" required name="username">
+                </div>
+
+
+                <div class="form-outline mb-4 container col-md-5">
+                    <label for="email" class="form-label">
+                    Email Id
+                    </label>
+                    <input type="email" formControlName="email" id="email" class="form-control" placeholder="Enter your Email Address" required>
+                </div>
+
+                <div class="form-outline mb-4 container col-md-5">
+                    <label id="number" class="form-label">
+                        Mobile Number
+                    </label>
+                    <input type="tel" name="" id="number" formControlName="mobileNumber" class="form-control" placeholder="Enter 10/12 digit mobile Number">
+                </div>
+
+                <div class="form-outline mb-4 container col-md-5">
+                    <label id="pass" class="form-label">
+                        Password
+                    </label>
+                    <input type="password" name="" id="pass" formControlName="password" class="form-control" placeholder="Enter password">
+                </div>
+
+                <div class="form-outline mb-4 container col-md-5">
+                    <label id="cpass" class="form-label">
+                        Confirm  Password
+                    </label>
+                    <input type="password" name="" id="cpass" formControlName="cpassword" class="form-control" placeholder="Please Confirm Your password">
+                </div>
+
+                <div class="form-outline mb-4 container text-center">
+                    <input type="submit" value="Register" class="btn btn-success" style="background-color: darkred; color: yellow; opacity: 0.99;" [disabled]="!adminAddForm.valid">
+                </div>
+                <div class="form-outline mb-4 container text-center">
+                    <a routerLink="/loginAdmin" style="color: yellow;"> Already have an account? Sign In </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!-- if already logged in, then one should see this -->
+<ng-template #elseBlock1>
+    <div *ngIf="(adminUser !== undefined || customerUser !== undefined || driverUser !== undefined)">
+        <div class="backgroundimage">
+            <div class="container">
+                <div class="card text-center">
+                    <div class="card-body">
+                    <h5 class="card-title">Looks Like There Is Some Error</h5>
+                    <p class="card-text">You cannot register after logging in.  Please Logout</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
